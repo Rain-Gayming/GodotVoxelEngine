@@ -1,5 +1,7 @@
 extends Node
 
+class_name WorldManager
+
 @export_category("References")
 @export var player : Node3D
 
@@ -10,13 +12,9 @@ extends Node
 @export var chunkScene : PackedScene
 @export var chunks : Array[Node3D] = []
 
-func _ready():
-	for i in renderDistance:
-		addChunk(Vector3(0, 0, 0));
-
-
 func addChunk(position : Vector3):
 	var newChunk = chunkScene.instantiate()
 	newChunk.name = "chunk " + str((chunks.size() + 1))
 	chunks.append(newChunk);
+	print("Adding chunk at " + str(position));
 	add_child(newChunk)

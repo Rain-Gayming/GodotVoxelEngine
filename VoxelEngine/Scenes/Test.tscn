@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cexmyk31ubi6"]
+[gd_scene load_steps=6 format=3 uid="uid://cexmyk31ubi6"]
 
 [ext_resource type="Script" path="res://Scripts/Camera/FlyCamera.gd" id="1_0alar"]
 [ext_resource type="Script" path="res://Scripts/World/WorldManager.gd" id="1_cye8n"]
 [ext_resource type="PackedScene" uid="uid://knq0d1xkxqyi" path="res://Prefabs/chunk.tscn" id="2_ynxeo"]
+[ext_resource type="PackedScene" uid="uid://b4ts10opwcsh8" path="res://Prefabs/UI/FPSUI.tscn" id="4_sxikg"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_n123h"]
 radius = 0.126965
@@ -12,9 +13,10 @@ script = ExtResource("1_cye8n")
 player = NodePath("Player")
 chunkScene = ExtResource("2_ynxeo")
 
-[node name="Player" type="Camera3D" parent="."]
+[node name="Player" type="Camera3D" parent="." node_paths=PackedStringArray("worldManager")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.747498, 1.39161)
 script = ExtResource("1_0alar")
+worldManager = NodePath("..")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Player"]
 
@@ -23,3 +25,5 @@ shape = SubResource("SphereShape3D_n123h")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 5, 0)
+
+[node name="Fpsui" parent="." instance=ExtResource("4_sxikg")]

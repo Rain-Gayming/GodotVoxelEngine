@@ -1,7 +1,13 @@
 extends Camera3D
 
+@export_category("References")
+@export var worldManager : WorldManager
+
+@export_category("Movement")
 @export var acceleration = 25.0;
 @export var moveSpeed = 5.0;
+
+@export_category("Looking")
 @export var mouseSensitivity = 300.0;
 
 var velocity = Vector3.ZERO;
@@ -21,6 +27,13 @@ func _process(delta):
 		velocity = velocity.normalized() * moveSpeed
 	
 	translate(velocity * delta);
+	
+	
+	#if (position.x / 16) == snapped(position.x / 16, 1):
+	#	worldManager.addChunk(Vector3(position.x, 0, position.z))
+	#	
+	#if (position.z / 16) == snapped(position.z / 16, 1):
+	#	worldManager.addChunk(Vector3(position.x, 0, position.z))
 
 func _input(event):
 	if event is InputEventMouseMotion:
