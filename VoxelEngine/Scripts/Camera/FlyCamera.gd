@@ -28,12 +28,6 @@ func _process(delta):
 	
 	translate(velocity * delta);
 	
-	
-	#if (position.x / 16) == snapped(position.x / 16, 1):
-	#	worldManager.addChunk(Vector3(position.x, 0, position.z))
-	#	
-	#if (position.z / 16) == snapped(position.z / 16, 1):
-	#	worldManager.addChunk(Vector3(position.x, 0, position.z))
 
 func _input(event):
 	if event is InputEventMouseMotion:
