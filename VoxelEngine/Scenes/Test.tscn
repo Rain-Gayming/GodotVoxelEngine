@@ -27,7 +27,7 @@ player = NodePath("Player")
 chunkScene = ExtResource("2_ynxeo")
 
 [node name="Player" type="Camera3D" parent="." node_paths=PackedStringArray("worldManager")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.747498, 1.39161)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00877577, 0.747498, 0.02605)
 script = ExtResource("1_0alar")
 worldManager = NodePath("..")
 
