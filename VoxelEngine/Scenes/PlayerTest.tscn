@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://bikd03ggaewiv"]
+
+[ext_resource type="Script" path="res://Scripts/World/WorldManager.gd" id="1_orpxr"]
+[ext_resource type="PackedScene" uid="uid://knq0d1xkxqyi" path="res://Prefabs/chunk.tscn" id="2_babej"]
+[ext_resource type="PackedScene" uid="uid://b4ts10opwcsh8" path="res://Prefabs/UI/FPSUI.tscn" id="4_3j7j5"]
+[ext_resource type="PackedScene" uid="uid://7w6d7olc58o" path="res://Prefabs/Player.tscn" id="4_ggqbk"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_od012"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d2j3n"]
+size = Vector3(2.01978, 0.112305, 2.0459)
+
+[node name="Test" type="Node3D"]
+script = ExtResource("1_orpxr")
+chunkScene = ExtResource("2_babej")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.999997, -0.000856115, -0.00215446, 0.00167268, -0.377034, 0.926198, -0.00160524, -0.926199, -0.377032, 0, 5, 0)
+
+[node name="Fpsui" parent="." instance=ExtResource("4_3j7j5")]
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D/StaticBody3D"]
+transform = Transform3D(4, 0, 0, 0, 1, 0, 0, 0, 4.4, 0, 0, 0)
+mesh = SubResource("PlaneMesh_od012")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/StaticBody3D"]
+transform = Transform3D(4, 0, 0, 0, 1, 0, 0, 0, 4.4, -0.00830078, -0.0639648, 0)
+shape = SubResource("BoxShape3D_d2j3n")
+
+[node name="Player" parent="." instance=ExtResource("4_ggqbk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.425098, 0, -0.0176067)

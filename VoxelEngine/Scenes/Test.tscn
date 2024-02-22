@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://cexmyk31ubi6"]
+[gd_scene load_steps=9 format=3 uid="uid://cexmyk31ubi6"]
 
 [ext_resource type="Script" path="res://Scripts/Camera/FlyCamera.gd" id="1_0alar"]
 [ext_resource type="Script" path="res://Scripts/World/WorldManager.gd" id="1_cye8n"]
 [ext_resource type="PackedScene" uid="uid://knq0d1xkxqyi" path="res://Prefabs/chunk.tscn" id="2_ynxeo"]
 [ext_resource type="PackedScene" uid="uid://b4ts10opwcsh8" path="res://Prefabs/UI/FPSUI.tscn" id="4_sxikg"]
 [ext_resource type="Script" path="res://Scripts/World/ChunkMeshGeneration.gd" id="5_53dtd"]
+[ext_resource type="Script" path="res://Scripts/Player/InputManager.gd" id="6_lf5bm"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_n123h"]
 radius = 0.126965
@@ -44,3 +45,6 @@ transform = Transform3D(0.999997, -0.000856115, -0.00215446, 0.00167268, -0.3770
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_dvi1p")
 script = ExtResource("5_53dtd")
+
+[node name="Node3D" type="Node3D" parent="."]
+script = ExtResource("6_lf5bm")

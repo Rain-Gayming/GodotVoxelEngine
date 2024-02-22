@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=3 uid="uid://7w6d7olc58o"]
+
+[ext_resource type="Script" path="res://Scripts/Player/PlayerLocomotion.gd" id="1_l5q27"]
+[ext_resource type="Script" path="res://Scripts/Player/InputManager.gd" id="2_6mpd7"]
+[ext_resource type="Script" path="res://Scripts/Camera/PlayerCamera.gd" id="3_u8pa2"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5dnfw"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_14i5y"]
+
+[node name="Player" type="Node3D"]
+
+[node name="Locomotion" type="Node3D" parent="." node_paths=PackedStringArray("rigidBody", "cameraObject", "inputManager")]
+script = ExtResource("1_l5q27")
+rigidBody = NodePath("RigidBody3D")
+cameraObject = NodePath("../Camera/Camera Holder/Camera Pivot/Camera3D")
+inputManager = NodePath("../Input Manager")
+walkSpeed = 3.0
+runSpeed = 4.0
+sprintSpeed = 6.0
+currentMoveType = 1
+
+[node name="RigidBody3D" type="RigidBody3D" parent="Locomotion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Locomotion/RigidBody3D"]
+shape = SubResource("CapsuleShape3D_5dnfw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Locomotion/RigidBody3D"]
+mesh = SubResource("CapsuleMesh_14i5y")
+
+[node name="Input Manager" type="Node3D" parent="."]
+script = ExtResource("2_6mpd7")
+
+[node name="Camera" type="Node3D" parent="." node_paths=PackedStringArray("inputManager", "target", "cameraTransform", "cameraPivot")]
+script = ExtResource("3_u8pa2")
+inputManager = NodePath("../Input Manager")
+target = NodePath("../Locomotion/RigidBody3D")
+cameraTransform = NodePath("Camera Holder/Camera Pivot/Camera3D")
+cameraPivot = NodePath("Camera Holder/Camera Pivot")
+
+[node name="Camera Holder" type="Node3D" parent="Camera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.695143, 1.93495, -3)
+
+[node name="Camera Pivot" type="Node3D" parent="Camera/Camera Holder"]
+transform = Transform3D(-1, 0, -5.96046e-08, 0, 1, 0, 5.96046e-08, 0, -1, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Camera/Camera Holder/Camera Pivot"]
