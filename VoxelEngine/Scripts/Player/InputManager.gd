@@ -6,7 +6,7 @@ class_name InputManager
 @export var movement : Vector2
 
 @export_category("Mouse Inputs")
-@export var mouseDelta : float
+@export var mouseDelta : Vector3
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -31,4 +31,5 @@ func _process(delta):
 
 func _input(event):
 	if event is InputEventMouseMotion:
-		mouseDelta += event.relative
+		mouseDelta.x += event.relative.x
+		mouseDelta.y += event.relative.y

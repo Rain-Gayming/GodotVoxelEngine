@@ -35,4 +35,18 @@ func followTarget():
 	position = targetPosition
 
 func rotateCamera():
-	pass
+	lookAngle = lookAngle + (inputManager.mouseDelta.x  * lookSpeed)
+	pivotAngle = pivotAngle - (inputManager.mouseDelta.y * pivotSpeed)
+	
+	pivotAngle = clampf(pivotAngle, -45, 45)
+	
+	var rot = Vector3.ZERO
+	rot.y = lookAngle
+	var targetRot = quaternion.from_euler(rot)
+	rotation = targetRot
+	
+	rot = Vector3.ZERO
+	rot.x = pivotAngle
+	targetRot = quaternion.from_euler(rot)
+	cameraPivot.rotation = targetRot
+	
