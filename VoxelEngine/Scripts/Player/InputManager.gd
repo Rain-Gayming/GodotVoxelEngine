@@ -6,7 +6,7 @@ class_name InputManager
 @export var movement : Vector2
 
 @export_category("Mouse Inputs")
-@export var mouseDelta : Vector3
+@export var mouseDelta : Vector2
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -15,6 +15,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	
 	if Input.is_action_pressed("moveForward"):
 		movement.y = 1
 	elif Input.is_action_pressed("moveBackward"):
@@ -31,5 +32,9 @@ func _process(delta):
 
 func _input(event):
 	if event is InputEventMouseMotion:
-		mouseDelta.x += event.relative.x
-		mouseDelta.y += event.relative.y
+		mouseDelta = Vector2.ZERO
+		
+		mouseDelta = event.relative
+		
+		mouseDelta.x = clampf(mouseDelta.x, -1, 1)
+		mouseDelta.y = clampf(mouseDelta.y, -1, 1)

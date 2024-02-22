@@ -41,8 +41,8 @@ inputManager = NodePath("../Input Manager")
 target = NodePath("../Locomotion/RigidBody3D")
 cameraTransform = NodePath("Camera Holder/Camera Pivot/Camera3D")
 cameraPivot = NodePath("Camera Holder/Camera Pivot")
-lookSpeed = 0.1
-pivotSpeed = 0.1
+lookSpeed = 0.05
+pivotSpeed = 0.05
 
 [node name="Camera Holder" type="Node3D" parent="Camera"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.695143, 1.93495, -3)

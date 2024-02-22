@@ -23,6 +23,7 @@ extends Node3D
 @export var cameraFollowVelocity : Vector3
 
 func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	defaultPosition = cameraTransform.position.z
 
 func _process(delta):
@@ -35,18 +36,14 @@ func followTarget():
 	position = targetPosition
 
 func rotateCamera():
+	lookAngle = 0
+	pivotAngle = 0
+	
 	lookAngle = lookAngle + (inputManager.mouseDelta.x  * lookSpeed)
 	pivotAngle = pivotAngle - (inputManager.mouseDelta.y * pivotSpeed)
 	
 	pivotAngle = clampf(pivotAngle, -45, 45)
 	
-	var rot = Vector3.ZERO
-	rot.y = lookAngle
-	var targetRot = quaternion.from_euler(rot)
-	rotation = targetRot
-	
-	rot = Vector3.ZERO
-	rot.x = pivotAngle
-	targetRot = quaternion.from_euler(rot)
-	cameraPivot.rotation = targetRot
+	rotate_y(lookAngle)
+	rotate_x(pivotAngle)
 	
